@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Алексей Иванов | Креативный разработчик</title>
+    <!-- Подключение шрифта Inter и дополнительных стилей -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (бесплатные иконки) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(145deg, #f9fafc 0%, #eef2f7 100%);
+            color: #1e293b;
+            line-height: 1.4;
+            scroll-behavior: smooth;
+        }
+
+        /* Контейнер */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Секции */
+        section {
+            padding: 80px 0;
+        }
+
+        /* Стили для hero-блока */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .hero-text {
+            flex: 1.2;
+        }
+
+        .hero-badge {
+            background: rgba(99, 102, 241, 0.12);
+            color: #4f46e5;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 20px;
+            backdrop-filter: blur(2px);
+        }
+
+        .hero-text h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #1e293b, #3b82f6);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 0 6px;
+            border-radius: 12px;
+            display: inline-block;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: #334155;
+            max-width: 550px;
+            margin-bottom: 32px;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: #1e293b;
+            color: white;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.05);
+        }
+
+        .btn-primary:hover {
+            background: #0f172a;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px -8px rgba(0,0,0,0.15);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #cbd5e1;
+            color: #1e293b;
+        }
+
+        .btn-outline:hover {
+            border-color: #3b82f6;
+            background: rgba(59,130,246,0.05);
+            transform: translateY(-2px);
+        }
+
+        .hero-visual {
+            flex: 0.8;
+            background: rgba(255,255,255,0.5);
+            border-radius: 48px;
+            backdrop-filter: blur(4px);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 25px 40px -12px rgba(0,0,0,0.15);
+        }
+
+        .interactive-card {
+            background: white;
+            border-radius: 32px;
+            padding: 28px 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+            transition: all 0.3s;
+        }
+
+        /* Счетчик лайков */
+        .like-section {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .like-btn {
+            background: #f1f5f9;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .like-btn i {
+            font-size: 1.4rem;
+            color: #ef4444;
+            transition: transform 0.2s;
+        }
+
+        .like-btn:hover i {
+            transform: scale(1.15);
+        }
+
+        .like-count {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: #eef2ff;
+            padding: 8px 18px;
+            border-radius: 60px;
+        }
+
+        /* Блок с цветным интерактивом */
+        .color-box {
+            background: #e2e8f0;
+            border-radius: 24px;
+            padding: 10px;
+            margin: 20px 0;
+        }
+
+        .color-preview {
+            height: 100px;
+            background: #3b82f6;
+            border-radius: 20px;
+            transition: background 0.2s ease;
+            margin-bottom: 15px;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .color-controls {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .color-btn {
+            padding: 8px 18px;
+            border-radius: 40px;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: 0.1s linear;
+        }
+
+        /* Секция "Навыки / инструменты" */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .skill-item {
+            background: white;
+            border-radius: 60px;
+            padding: 14px 28px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 8px 14px rgba(0,0,0,0.02);
+            transition: all 0.2s;
+            cursor: pointer;
+            border: 1px solid #e2e8f0;
+        }
+
+        .skill-item i {
+            font-size: 1.4rem;
+            color: #3b82f6;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: #3b82f6;
+            box-shadow: 0 20px 25px -12px rgba(59,130,246,0.2);
+        }
+
+        /* Галерея проектов (динамическая) */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 28px;
+            padding: 24px;
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            box-shadow: 0 12px 24px -12px rgba(0,0,0,0.08);
+            border: 1px solid rgba(203,213,225,0.5);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 30px -12px rgba(0,0,0,0.15);
+        }
+
+        .project-icon {
+            font-size: 2.4rem;
+            margin-bottom: 16px;
+            color: #4f46e5;
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .project-card p {
+            color: #475569;
+            margin-bottom: 20px;
+        }
+
+        .project-link {
+            color: #3b82f6;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Контактная форма */
+        .contact-form {
+            background: white;
+            border-radius: 40px;
+            padding: 40px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 20px 35px -10px rgba(0,0,0,0.05);
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 16px 20px;
+            border-radius: 28px;
+            border: 1.5px solid #e2e8f0;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: 0.2s;
+            background: #fefefe;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
+        }
+
+        .submit-feedback {
+            margin-top: 16px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        footer {
+            background: #0f172a;
+            color: #cbd5e1;
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 800px) {
+            .hero-text h1 {
+                font-size: 2.4rem;
+            }
+            section {
+                padding: 60px 0;
+            }
+            .hero-content {
+                flex-direction: column;
+            }
+        }
+
+        .animated {
+            transition: all 0.2s;
+        }
+
+        /* тост уведомление */
+        .toast-msg {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 60px;
+            font-weight: 500;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.2s;
+            pointer-events: none;
+            backdrop-filter: blur(8px);
+            background: rgba(15,23,42,0.9);
+        }
+    </style>
+</head>
+<body>
+
+<div class="toast-msg" id="toastMsg">✨ Спасибо!</div>
+
+<!-- Hero секция -->
+<section class="hero">
+    <div class="container hero-content">
+        <div class="hero-text">
+            <span class="hero-badge"><i class="fas fa-code"></i> Добро пожаловать!</span>
+            <h1>Алексей Иванов<br> <span class="highlight">frontend-разработчик</span> & дизайнер</h1>
+            <p>Создаю элегантные, интерактивные веб-решения. Превращаю идеи в живой код с душой.</p>
+            <div class="cta-group">
+                <a href="#projects" class="btn btn-primary"><i class="fas fa-arrow-down"></i> Проекты</a>
+                <a href="#contact" class="btn btn-outline"><i class="fas fa-paper-plane"></i> Связаться</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="interactive-card">
+                <i class="fas fa-mouse-pointer" style="font-size: 2rem; color:#4f46e5;"></i>
+                <h3 style="margin: 12px 0 8px;">Интерактивность</h3>
+                <!-- Лайк-виджет -->
+                <div class="like-section">
+                    <button class="like-btn" id="likeButton"><i class="fas fa-heart"></i> Нравится</button>
+                    <span class="like-count" id="likeCounter">0</span>
+                </div>
+                <!-- Динамическая цветная панель -->
+                <div class="color-box">
+                    <div class="color-preview" id="colorPreview"></div>
+                    <div class="color-controls">
+                        <button class="color-btn" data-color="#3b82f6">Синий</button>
+                        <button class="color-btn" data-color="#ef4444">Красный</button>
+                        <button class="color-btn" data-color="#10b981">Изумруд</button>
+                        <button class="color-btn" data-color="#f59e0b">Янтарь</button>
+                    </div>
+                </div>
+                <p style="font-size: 0.85rem; color:#475569;"><i class="fas fa-hand-peace"></i> Нажми на цвет — изменится настроение</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Навыки / интерактивные карточки -->
+<section id="skills">
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 20px;">
+            <h2 style="font-size: 2.2rem;">Технологии & инструменты</h2>
+            <p style="color: #475569;">Кликни по навыку — увидишь сообщение</p>
+        </div>
+        <div class="skills-grid" id="skillsGrid">
+            <!-- Данные подставятся через JS но и базовые тоже есть, сделаем динамическое наполнение -->
+        </div>
+    </div>
+</section>
+
+<!-- Галерея проектов (интерактивная фильтрация по клику) -->
+<section id="projects">
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+            <h2 style="font-size: 2rem;">Избранные работы</h2>
+            <div>
+                <button class="btn-outline btn filter-btn active-filter" data-filter="all" style="margin-right: 8px;">Все</button>
+                <button class="btn-outline btn filter-btn" data-filter="web">Web</button>
+                <button class="btn-outline btn filter-btn" data-filter="app">Приложения</button>
+                <button class="btn-outline btn filter-btn" data-filter="design">Дизайн</button>
+            </div>
+        </div>
+        <div class="projects-grid" id="projectsContainer"></div>
+    </div>
+</section>
+
+<!-- Контактная форма с валидацией и интерактивным фидбеком -->
+<section id="contact">
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <h2>Напишите мне</h2>
+            <p>Заполните форму — и я отвечу в ближайшее время</p>
+        </div>
+        <div class="contact-form">
+            <form id="contactForm">
+                <div class="input-group">
+                    <input type="text" id="nameInput" placeholder="Ваше имя" required>
+                </div>
+                <div class="input-group">
+                    <input type="email" id="emailInput" placeholder="Email" required>
+                </div>
+                <div class="input-group">
+                    <textarea rows="3" id="messageInput" placeholder="Ваше сообщение..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;"><i class="fas fa-envelope"></i> Отправить</button>
+                <div class="submit-feedback" id="formFeedback"></div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p><i class="fas fa-crown"></i> Алексей Иванов — креативный разработчик | 2025</p>
+        <div style="margin-top: 16px; display: flex; gap: 20px; justify-content: center;">
+            <a href="#" style="color:#94a3b8; font-size: 1.4rem;"><i class="fab fa-github"></i></a>
+            <a href="#" style="color:#94a3b8; font-size: 1.4rem;"><i class="fab fa-linkedin"></i></a>
+            <a href="#" style="color:#94a3b8; font-size: 1.4rem;"><i class="fab fa-telegram"></i></a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // -------------------------------
+    // 1) Лайк-виджет (сохраняем в localStorage)
+    // -------------------------------
+    const likeBtn = document.getElementById('likeButton');
+    const likeCounterSpan = document.getElementById('likeCounter');
+    let likeCount = localStorage.getItem('siteLikeCount') ? parseInt(localStorage.getItem('siteLikeCount')) : 0;
+    likeCounterSpan.innerText = likeCount;
+
+    function updateLikesUI() {
+        likeCounterSpan.innerText = likeCount;
+        localStorage.setItem('siteLikeCount', likeCount);
+        showToast('❤️ Спасибо за поддержку!');
+    }
+
+    likeBtn.addEventListener('click', () => {
+        likeCount++;
+        updateLikesUI();
+        // анимация сердечка
+        const heartIcon = likeBtn.querySelector('i');
+        heartIcon.style.transform = 'scale(1.3)';
+        setTimeout(() => { heartIcon.style.transform = ''; }, 200);
+    });
+
+    // -------------------------------
+    // 2) Интерактивная смена цвета блока (color-preview)
+    // -------------------------------
+    const colorPreview = document.getElementById('colorPreview');
+    const colorBtns = document.querySelectorAll('.color-btn');
+    // начальный цвет синий
+    colorPreview.style.backgroundColor = '#3b82f6';
+    colorBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const newColor = btn.getAttribute('data-color');
+            colorPreview.style.backgroundColor = newColor;
+            showToast(`Цвет изменён на ${btn.innerText}`);
+            // добавим микроанимацию
+            colorPreview.style.transform = 'scale(0.98)';
+            setTimeout(() => colorPreview.style.transform = '', 150);
+        });
+    });
+
+    // -------------------------------
+    // 3) Навыки (динамические карточки + уведомление)
+    // -------------------------------
+    const skillsData = [
+        { name: 'React.js', icon: 'fab fa-react', color: '#61dafb' },
+        { name: 'JavaScript', icon: 'fab fa-js', color: '#f7df1e' },
+        { name: 'Tailwind CSS', icon: 'fas fa-wind', color: '#38bdf8' },
+        { name: 'Figma', icon: 'fab fa-figma', color: '#a259ff' },
+        { name: 'Node.js', icon: 'fab fa-node-js', color: '#339933' },
+        { name: 'Git', icon: 'fab fa-git-alt', color: '#f05032' },
+    ];
+    const skillsGrid = document.getElementById('skillsGrid');
+    function buildSkills() {
+        skillsGrid.innerHTML = '';
+        skillsData.forEach(skill => {
+            const skillDiv = document.createElement('div');
+            skillDiv.className = 'skill-item';
+            skillDiv.innerHTML = `<i class="${skill.icon}" style="color:${skill.color};"></i> ${skill.name}`;
+            skillDiv.addEventListener('click', () => {
+                showToast(`🔧 ${skill.name} — мой основной инструмент!`);
+                // добавим вибрацию эффекта
+                skillDiv.style.transform = 'scale(0.96)';
+                setTimeout(() => skillDiv.style.transform = '', 150);
+            });
+            skillsGrid.appendChild(skillDiv);
+        });
+    }
+    buildSkills();
+
+    // -------------------------------
+    // 4) Проекты + фильтрация (интерактивная галерея)
+    // -------------------------------
+    const projectsData = [
+        { id: 1, title: 'AI дашборд', desc: 'Аналитика в реальном времени, графики, WebSocket.', category: 'web', icon: 'fas fa-chart-line' },
+        { id: 2, title: 'Мобильное приложение Fitness', desc: 'React Native, трекер активности.', category: 'app', icon: 'fas fa-heartbeat' },
+        { id: 3, title: 'Брендинг студии', desc: 'Логотип, айдентика, UI Kit.', category: 'design', icon: 'fas fa-palette' },
+        { id: 4, title: 'Портал новостей', desc: 'Next.js, адаптивная вёрстка, SSR.', category: 'web', icon: 'fas fa-newspaper' },
+        { id: 5, title: 'Кросс-платформенный чат', desc: 'Electron + Socket.io', category: 'app', icon: 'fas fa-comments' },
+        { id: 6, title: '3D визуализация', desc: 'Three.js интерактивная сцена', category: 'design', icon: 'fas fa-cube' }
+    ];
+    const projectsContainer = document.getElementById('projectsContainer');
+    let activeFilter = 'all';
+
+    function renderProjects(filter) {
+        projectsContainer.innerHTML = '';
+        const filtered = filter === 'all' ? projectsData : projectsData.filter(p => p.category === filter);
+        if(filtered.length === 0) {
+            projectsContainer.innerHTML = '<div style="text-align:center; padding:40px;">Нет проектов в этой категории 🤷</div>';
+            return;
+        }
+        filtered.forEach(proj => {
+            const card = document.createElement('div');
+            card.className = 'project-card';
+            card.innerHTML = `
+                <div class="project-icon"><i class="${proj.icon}"></i></div>
+                <h3>${proj.title}</h3>
+                <p>${proj.desc}</p>
+                <a href="#" class="project-link project-detail" data-id="${proj.id}">Подробнее <i class="fas fa-arrow-right"></i></a>
+            `;
+            projectsContainer.appendChild(card);
+        });
+        // добавляем обработчики на "подробнее" (интерактив)
+        document.querySelectorAll('.project-detail').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const id = link.getAttribute('data-id');
+                const project = projectsData.find(p => p.id == id);
+                if(project) {
+                    showToast(`🔍 ${project.title}: ${project.desc} (категория: ${project.category})`);
+                } else {
+                    showToast(`✨ Скоро появятся детали!`);
+                }
+            });
+        });
+    }
+
+    // Фильтры-кнопки
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active-filter'));
+            btn.classList.add('active-filter');
+            activeFilter = btn.getAttribute('data-filter');
+            renderProjects(activeFilter);
+            showToast(`Показаны проекты: ${btn.innerText}`);
+        });
+    });
+    renderProjects('all');
+
+    // Стиль активной кнопки добавим в CSS (подсветка)
+    const style = document.createElement('style');
+    style.textContent = `.active-filter { background: #1e293b !important; color: white !important; border-color: #1e293b !important; }`;
+    document.head.appendChild(style);
+
+    // -------------------------------
+    // 5) Форма обратной связи с валидацией и тостом
+    // -------------------------------
+    const contactForm = document.getElementById('contactForm');
+    const formFeedback = document.getElementById('formFeedback');
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('nameInput').value.trim();
+        const email = document.getElementById('emailInput').value.trim();
+        const message = document.getElementById('messageInput').value.trim();
+        if(!name || !email || !message) {
+            formFeedback.innerHTML = '<span style="color:#ef4444;">❌ Пожалуйста, заполните все поля!</span>';
+            setTimeout(() => { formFeedback.innerHTML = ''; }, 2500);
+            return;
+        }
+        if(!email.includes('@') || !email.includes('.')) {
+            formFeedback.innerHTML = '<span style="color:#ef4444;">📧 Введите корректный email</span>';
+            setTimeout(() => { formFeedback.innerHTML = ''; }, 2500);
+            return;
+        }
+        // Имитация отправки
+        formFeedback.innerHTML = '<span style="color:#10b981;">✅ Сообщение отправлено! Я свяжусь с вами в ближайшее время.</span>';
+        contactForm.reset();
+        setTimeout(() => { formFeedback.innerHTML = ''; }, 4000);
+        showToast(`📬 Спасибо, ${name}! Ваше сообщение получено.`);
+    });
+
+    // -------------------------------
+    // 6) Универсальный тост-уведомление
+    // -------------------------------
+    const toast = document.getElementById('toastMsg');
+    let toastTimeout;
+    function showToast(text) {
+        if(toastTimeout) clearTimeout(toastTimeout);
+        toast.innerText = text;
+        toast.style.opacity = '1';
+        toastTimeout = setTimeout(() => {
+            toast.style.opacity = '0';
+        }, 2000);
+    }
+
+    // -------------------------------
+    // 7) Дополнительный эффект: смена градиента hero при скролле (небольшая интерактивность)
+    // -------------------------------
+    window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+        const heroSection = document.querySelector('.hero');
+        if(heroSection) {
+            const intensity = Math.min(scrollY / 500, 0.3);
+            heroSection.style.background = `linear-gradient(145deg, rgba(249,250,252,${1-intensity*0.5}), #eef2f7)`;
+        }
+    });
+
+    // Также добавим начальный красивый эффект для кнопок "проекты"
+    console.log('Сайт-визитка с интерактивными элементами запущен!');
+    // микро-приветствие
+    setTimeout(() => {
+        showToast('👋 Привет! Взаимодействуй с элементами :)');
+    }, 800);
+</script>
+</body>
+</html>
